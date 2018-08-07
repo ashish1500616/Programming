@@ -2,3 +2,6 @@
 !*.*
 # Unignore all dirs
 !*/
+/cosmos
+/likecs
+
