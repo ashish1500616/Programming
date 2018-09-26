@@ -107,40 +107,92 @@ void err(istream_iterator<string> it, T a, Args... args) {
 #define pq priority_queue
 #define fl flush
 
-int main() {
-#ifndef ONLINE_JUDGE
-  freopen("input.txt", "r", stdin);
-  freopen("output.txt", "w", stdout);
-#endif
-  // TODO: SUBMIT THIS PROBLEM
-  fast();
-  int t;
-  get(t);
-  int arr[t];
-  rep(i, 0, t) { get(arr[i]); }
-  int d, m, count = 0;
-  cin >> d >> m;
-  if (m == 1) {
-    if (arr[0] == d) {
-      pln(1);
-    } else {
-      pln(0);
-    }
+// int main() {
+// #ifndef ONLINE_JUDGE
+//   freopen("input.txt", "r", stdin);
+//   freopen("output.txt", "w", stdout);
+// #endif
+//   // TODO: SUBMIT THIS PROBLEM
+//   fast();
+//   int t;
+//   get(t);
+//   int arr[t];
+//   rep(i, 0, t) { get(arr[i]); }
+//   int d, m, count = 0;
+//   cin >> d >> m;
+//   if (m == 1) {
+//     if (arr[0] == d) {
+//       pln(1);
+//     } else {
+//       pln(0);
+//     }
+//     return 0;
+//   }
+//   for (int i = 0; i < t - m; i++) {
+//     int sum = 0;
+//     for (int j = i; j < i + m; j++) {
+//       put(arr[j] << " ");
+//       sum += arr[j];
+//     }
+//     cout << "==" << sum;
+//     cout << endl;
+//     if (sum == d) {
+//       count++;
+//     }
+//   }
+//   pln(count);
+//
+//   return 0;
+// }
+void build_tree(int *tree, int *arr, int index, int s, int e) {
+  // Base Case
+  if (s > e) {
+    return;
+  }
+  // When node is a leaf node
+  if (s == e) {
+    tree[index] = arr[s];
+    return;
+  }
+  int mid = (s + e) / 2;
+  build_tree(tree, arr, 2 * index, s, mid);
+  build_tree(tree, arr, 2 * index + 1, mid + 1, e);
+  tree[index] = (tree[2 * index] + tree[(2 * index) + 1]);
+}
+int query(int *tree, int index, int qs, int qe, int s, int e) {
+  if (qs > e || qe < s)
     return 0;
+  if (s >= qs && e <= qe) {
+    return tree[index];
   }
-  for (int i = 0; i < t - m; i++) {
-    int sum = 0;
-    for (int j = i; j < i + m; j++) {
-      put(arr[j] << " ");
-      sum += arr[j];
-    }
-    cout << "==" << sum;
-    cout << endl;
-    if (sum == d) {
-      count++;
-    }
-  }
-  pln(count);
+  int mid = (s + e) / 2;
+  int leftAns = query(tree, 2 * index, qs, qe, s, mid);
+  int rightAns = query(tree, 2 * index + 1, qs, qe, mid + 1, e);
+  return (leftAns + rightAns);
+}
+int main() {
 
+  int n, m, d, c = 0;
+  get(n);
+  int *arr = new int[n];
+  rep(i, 0, n) { get(arr[i]); }
+
+  get(d >> m);
+  int *tree = new int[4 * n + 1];
+  int index = 1;
+  int s = 0, e = n - 1;
+  build_tree(tree, arr, index, s, e);
+  // int no = n / m;
+  int l = 0, h = m - 1;
+
+  wh(h <= n) {
+    int val = query(tree, 1, l, h, 0, n - 1);
+    // pln(val);
+    if (val == d)
+      c++;
+    l++;
+    h++;
+  }
+  put(c);
   return 0;
 }

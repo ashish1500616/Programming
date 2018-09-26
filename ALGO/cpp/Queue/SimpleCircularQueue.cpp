@@ -55,8 +55,8 @@ public:
   }
   T frontQueue() { return queue[front]; }
   T rearQueue() { return queue[rear]; }
-  bool isEmpty() { return front == -1; }
-  bool isFull() { return size == limit; }
+  bool isEmpty() { return (front == -1); }
+  bool isFull() { return (size == limit); }
 };
 int main() {
   Queue<string> obj(5);
@@ -71,4 +71,6 @@ int main() {
   cout << "Size::" << obj.size << endl;
   cout << "Front::" << obj.frontQueue() << endl;
   cout << "Back::" << obj.rearQueue() << endl;
+  cout << "Full::" << obj.isFull() << endl;
+  cout << "Empty::" << obj.isEmpty() << endl;
 }

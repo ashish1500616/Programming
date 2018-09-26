@@ -16,4 +16,4 @@
             else:
                 visited.add(node)
                 result.append(node.data)
-                node.None
+                node=None

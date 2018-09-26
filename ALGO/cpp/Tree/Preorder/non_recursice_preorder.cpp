@@ -25,5 +25,5 @@ void non_recursive_preorder(BinaryTreeNode *root) {
     root = root->right;
   }
   // Implement A funciton to Delete the Stack
-  DeleteStack(S);
+  // DeleteStack(S);
 }

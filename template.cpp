@@ -108,6 +108,10 @@ void err(istream_iterator<string> it, T a, Args... args) {
 #define fl flush
 
 int main() {
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#endif
   fast();
   return 0;
 }

@@ -1,4 +1,4 @@
-class Queue(object):
+class Queue:
     # Constructor of Class Queue
     def __init__(self, limit=5):
         self.que = []
