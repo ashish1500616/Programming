@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define hashmap unordered_map<char, node*>
+#define hashmap unordered_map<char, node *>
 using namespace std;
 
 class node
@@ -17,22 +17,22 @@ public:
 };
 class Trie
 {
-    node* root;
+    node *root;
 
 public:
     Trie()
     {
         root = new node('\0');
     }
-    void addWord(char* word)
+    void addWord(char *word)
     {
-        node* temp = root;
+        node *temp = root;
         for (int i = 0; word[i] != '\0'; i++)
         {
             char ch = word[i];
             if (temp->h.count(ch) == 0)
             {
-                node* child = new node(ch);
+                node *child = new node(ch);
                 temp->h[ch] = child;
                 temp = child;
             }
@@ -43,9 +43,9 @@ public:
             temp->isTerminal = true;
         }
     }
-    bool search(char* word)
+    bool search(char *word)
     {
-        node* temp = root;
+        node *temp = root;
         for (int i = 0; word[i] != '\0'; i++)
         {
             char ch = word[i];
@@ -64,7 +64,7 @@ public:
 };
 int main()
 {
-    char word[10][100] = { "apples", "ape", "coder", "coding blocks", "no" };
+    char word[10][100] = {"apples", "ape", "coder", "coding blocks", "no"};
     Trie t;
     for (int i = 0; i < 6; i++)
     {

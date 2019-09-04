@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define watch(x) cout << (#x) << " is " << x << "\n"
 class Graph
 {
     int V;
@@ -23,7 +24,7 @@ public:
     }
     void countpaths(int src, int destination)
     {
-
+        watch(src);
         visited[src] = true;
         if (src == destination)
             path++;
@@ -33,10 +34,12 @@ public:
             {
                 if (!visited[it])
                 {
+                    watch(it);
                     countpaths(it, destination);
                 }
             }
         }
+        watch(src);
         visited[src] = false;
     }
 };
