@@ -1,11 +1,11 @@
-int powExpo(int a,int b)
+int powExpo(int a, int b)
 {
-    if(b==0)
-    return 1;
-    int ans=powExpo(a,b/2);
-    ans*=ans;
-    if(b&1)
-    ans*=a;
+    if (b == 0)
+        return 1;
+    int ans = powExpo(a, b / 2);
+    ans *= ans;
+    if (b & 1)
+        ans *= a;
     return ans;
 }
 
@@ -14,7 +14,7 @@ int ver(vector<int> r)
     int x = 0;
     for (int i = 0; i < 40; i++)
     {
-        if (r[i]==1)
+        if (r[i] == 1)
         {
             x += powExpo(2, i);
         }
