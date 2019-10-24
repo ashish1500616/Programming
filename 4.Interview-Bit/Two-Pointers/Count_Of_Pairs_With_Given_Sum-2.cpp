@@ -24,10 +24,9 @@ int Solution::solve(vector<int> &A, int B)
             {
                 ans += ((cnt1)*1LL * (cnt1 - 1) / 2);
             }
-            else if (cnt1 > 0 && cnt2 > 0)
-                ans += cnt1 * 1LL * cnt2;
             else
-                ans += 1;
+                ans += cnt1 * 1LL * cnt2;
+
         }
         ans %= 1000000007;
     }
